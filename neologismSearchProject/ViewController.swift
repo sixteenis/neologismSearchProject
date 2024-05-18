@@ -43,6 +43,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         setView()
     }
     func setView() {
@@ -77,7 +78,6 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 2
         button.titleLabel?.font = button.titleLabel?.font.withSize(14)
-        
     }
     func subViewTitleSet() {
         var arr = neologisms
@@ -91,6 +91,7 @@ class ViewController: UIViewController {
         subTitle2 = b!
         subTitle3 = c!
         
+        
     }
     
     func setsubTitle() {
@@ -100,12 +101,21 @@ class ViewController: UIViewController {
     }
     
     func mainlabelChange(title: String) {
-        mainLabel.text = neologisms[title]
+        if neologisms[title] == nil {
+            mainLabel.text = "처음 들어보는 신조어에요!"
+            
+        }else{
+            mainLabel.text = neologisms[title]
+        }
+        //랜덤으로 단어 선택하고 서브뷰에 나타내줌
+        subViewTitleSet()
+        setsubTitle()
     }
     
     
     @IBAction func mainTextFiledDone(_ sender: UITextField) {
-        print("1")
+        mainlabelChange(title: mainTextField.text!)
+        
     }
     
     
@@ -125,19 +135,18 @@ class ViewController: UIViewController {
     @IBAction func subButton3Tappend(_ sender: UIButton) {
         mainlabelChange(title: subTitle3)
     }
-    
-//    @IBOutlet var mainTextField: UITextField!
-//    @IBOutlet var mainTextFiledButton: UIButton!
-//    
-//    @IBOutlet var subSearchButton1: UIButton!
-//    @IBOutlet var subSearchButton2: UIButton!
-//    @IBOutlet var subSearchButton3: UIButton!
-//    
-//    @IBOutlet var mainbackgroundImage: UIImageView!
-//    @IBOutlet var mainLabel: UILabel!
-//    
-//    var subTitle1: [String] = []
-//    var subTitle2: [String] = []
-//    var subTitle3: [String] = []
+
 }
 
+//키보드 내리기
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
