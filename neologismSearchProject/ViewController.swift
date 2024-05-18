@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     
     @IBOutlet var mainbackgroundImage: UIImageView!
     @IBOutlet var mainLabel: UILabel!
-    @IBOutlet var subbackgroundImage: UIImageView!
     
     
     
@@ -44,6 +43,13 @@ class ViewController: UIViewController {
         setsubView(button: subSearchButton1)
         setsubView(button: subSearchButton2)
         setsubView(button: subSearchButton3)
+        
+        mainbackgroundImage.image = UIImage(named: "background")
+        mainbackgroundImage.contentMode = .scaleAspectFill
+        
+        mainLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
+        mainLabel.textAlignment = .center
+        
     }
     
     func setsubView(button: UIButton) {
