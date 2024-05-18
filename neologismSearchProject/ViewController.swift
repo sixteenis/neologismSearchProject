@@ -20,9 +20,9 @@ class ViewController: UIViewController {
     @IBOutlet var mainbackgroundImage: UIImageView!
     @IBOutlet var mainLabel: UILabel!
     
-    var subTitle1: [String] = []
-    var subTitle2: [String] = []
-    var subTitle3: [String] = []
+    var subTitle1: String = ""
+    var subTitle2: String = ""
+    var subTitle3: String = ""
     
     var neologisms: [String:String] = [
         "삼귀다": "사귀다의 바로 전단계를 표현",
@@ -76,28 +76,68 @@ class ViewController: UIViewController {
         button.tintColor = .black
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 2
+        button.titleLabel?.font = button.titleLabel?.font.withSize(14)
         
     }
     func subViewTitleSet() {
         var arr = neologisms
-        let a = arr.randomElement()
-        arr.removeValue(forKey: a!.key)
-        let b = arr.randomElement()
-        arr.removeValue(forKey: b!.key)
-        let c = arr.randomElement()
-        arr.removeValue(forKey: c!.key)
-        subTitle1 = [a!.key, a!.value]
-        subTitle2 = [b!.key, b!.value]
-        subTitle3 = [c!.key, c!.value]
+        let a = arr.randomElement()?.key
+        arr.removeValue(forKey: a!)
+        let b = arr.randomElement()?.key
+        arr.removeValue(forKey: b!)
+        let c = arr.randomElement()?.key
+        arr.removeValue(forKey: c!)
+        subTitle1 = a!
+        subTitle2 = b!
+        subTitle3 = c!
         
     }
     
     func setsubTitle() {
-        subSearchButton1.setTitle(subTitle1[0], for: .normal)
-        subSearchButton2.setTitle(subTitle2[0], for: .normal)
-        subSearchButton3.setTitle(subTitle3[0], for: .normal)
+        subSearchButton1.setTitle(subTitle1, for: .normal)
+        subSearchButton2.setTitle(subTitle2, for: .normal)
+        subSearchButton3.setTitle(subTitle3, for: .normal)
     }
-
-
+    
+    func mainlabelChange(title: String) {
+        mainLabel.text = neologisms[title]
+    }
+    
+    
+    @IBAction func mainTextFiledDone(_ sender: UITextField) {
+        print("1")
+    }
+    
+    
+    @IBAction func searchButtonTappend(_ sender: UIButton) {
+        mainlabelChange(title: mainTextField.text!)
+        
+    }
+    
+    @IBAction func subButton1Tappend(_ sender: UIButton) {
+        mainlabelChange(title: subTitle1)
+    }
+    
+    @IBAction func subButton2Tappend(_ sender: UIButton) {
+        mainlabelChange(title: subTitle2)
+    }
+    
+    @IBAction func subButton3Tappend(_ sender: UIButton) {
+        mainlabelChange(title: subTitle3)
+    }
+    
+//    @IBOutlet var mainTextField: UITextField!
+//    @IBOutlet var mainTextFiledButton: UIButton!
+//    
+//    @IBOutlet var subSearchButton1: UIButton!
+//    @IBOutlet var subSearchButton2: UIButton!
+//    @IBOutlet var subSearchButton3: UIButton!
+//    
+//    @IBOutlet var mainbackgroundImage: UIImageView!
+//    @IBOutlet var mainLabel: UILabel!
+//    
+//    var subTitle1: [String] = []
+//    var subTitle2: [String] = []
+//    var subTitle3: [String] = []
 }
 
