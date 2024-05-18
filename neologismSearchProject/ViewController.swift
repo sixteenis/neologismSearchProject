@@ -20,6 +20,9 @@ class ViewController: UIViewController {
     @IBOutlet var mainbackgroundImage: UIImageView!
     @IBOutlet var mainLabel: UILabel!
     
+    var subTitle1: [String] = []
+    var subTitle2: [String] = []
+    var subTitle3: [String] = []
     
     var neologisms: [String:String] = [
         "삼귀다": "사귀다의 바로 전단계를 표현",
@@ -46,6 +49,7 @@ class ViewController: UIViewController {
         mainTextField.layer.borderWidth = 3
         mainTextField.layer.borderColor = UIColor.black.cgColor
         mainTextField.frame.size.height = 45
+        mainTextField.placeholder = "신조어를 검색해주세요!"
         
         mainTextFiledButton.setImage(.init(systemName: "magnifyingglass"), for: .normal)
         mainTextFiledButton.tintColor = .white
@@ -61,6 +65,10 @@ class ViewController: UIViewController {
         
         mainLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
         mainLabel.textAlignment = .center
+        mainLabel.text = ""
+        
+        subViewTitleSet()
+        setsubTitle()
         
     }
     
@@ -69,6 +77,25 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 2
         
+    }
+    func subViewTitleSet() {
+        var arr = neologisms
+        let a = arr.randomElement()
+        arr.removeValue(forKey: a!.key)
+        let b = arr.randomElement()
+        arr.removeValue(forKey: b!.key)
+        let c = arr.randomElement()
+        arr.removeValue(forKey: c!.key)
+        subTitle1 = [a!.key, a!.value]
+        subTitle2 = [b!.key, b!.value]
+        subTitle3 = [c!.key, c!.value]
+        
+    }
+    
+    func setsubTitle() {
+        subSearchButton1.setTitle(subTitle1[0], for: .normal)
+        subSearchButton2.setTitle(subTitle2[0], for: .normal)
+        subSearchButton3.setTitle(subTitle3[0], for: .normal)
     }
 
 
