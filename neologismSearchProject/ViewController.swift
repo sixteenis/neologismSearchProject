@@ -40,6 +40,17 @@ class ViewController: UIViewController {
         mainTextFiledButton.tintColor = .white
         mainTextFiledButton.backgroundColor = .black
         mainTextFiledButton.setTitle("", for: .normal)
+        
+        setsubView(button: subSearchButton1)
+        setsubView(button: subSearchButton2)
+        setsubView(button: subSearchButton3)
+    }
+    
+    func setsubView(button: UIButton) {
+        button.tintColor = .black
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 2
+        
     }
 
 
