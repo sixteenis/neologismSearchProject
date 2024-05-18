@@ -20,10 +20,14 @@ class ViewController: UIViewController {
     @IBOutlet var mainbackgroundImage: UIImageView!
     @IBOutlet var mainLabel: UILabel!
     
+    @IBOutlet var unknownTextFiled: UITextField!
+    @IBOutlet var unknownTextFiledImage: UIButton!
+    
     var subTitle1: String = ""
     var subTitle2: String = ""
     var subTitle3: String = ""
     
+    var unownedTitle = ""
     var neologisms: [String:String] = [
         "삼귀다": "사귀다의 바로 전단계를 표현",
         "무야호": "무한도전에서 유래된 일종의 밈",
@@ -51,6 +55,7 @@ class ViewController: UIViewController {
         mainTextField.layer.borderColor = UIColor.black.cgColor
         mainTextField.frame.size.height = 45
         mainTextField.placeholder = "신조어를 검색해주세요!"
+        //mainTextField.keyboardType = .numbersAndPunctuation
         
         mainTextFiledButton.setImage(.init(systemName: "magnifyingglass"), for: .normal)
         mainTextFiledButton.tintColor = .white
@@ -67,10 +72,23 @@ class ViewController: UIViewController {
         mainLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
         mainLabel.textAlignment = .center
         mainLabel.text = ""
+        mainLabel.numberOfLines = 0
         
         subViewTitleSet()
         setsubTitle()
         
+        unknownTextFiled.layer.borderWidth = 3
+        unknownTextFiled.layer.borderColor = UIColor.black.cgColor
+        unknownTextFiled.frame.size.height = 45
+        //unknownTextFiled.keyboardType = .default
+        
+        unknownTextFiledImage.setImage(.init(systemName: "plus"), for: .normal)
+        unknownTextFiledImage.tintColor = .white
+        unknownTextFiledImage.backgroundColor = .black
+        unknownTextFiledImage.setTitle("", for: .normal)
+        
+        unknownTextFiled.isHidden = true
+        unknownTextFiledImage.isHidden = true
     }
     
     func setsubView(button: UIButton) {
@@ -102,22 +120,30 @@ class ViewController: UIViewController {
     
     func mainlabelChange(title: String) {
         if neologisms[title] == nil {
-            mainLabel.text = "처음 들어보는 신조어에요!"
+            mainLabel.text = "↑↑↑↑↑↑↑↑↑↑↑\n처음 들어보는 신조어에요!!\n  혹시 의미를 아셨다면 알려주세요!\n"
+            unownedTitle = title
+            unknownTextFiled.placeholder = "\(title)에 의미를 알려주세요!"
+            unknownTextFiled.isHidden = false
+            unknownTextFiledImage.isHidden = false
             
         }else{
             mainLabel.text = neologisms[title]
+            mainTextField.text = ""
+            unknownTextFiled.isHidden = true
+            unknownTextFiledImage.isHidden = true
+            subViewTitleSet()
+            setsubTitle()
         }
         //랜덤으로 단어 선택하고 서브뷰에 나타내줌
-        subViewTitleSet()
-        setsubTitle()
+        
+        
     }
+    
     
     
     @IBAction func mainTextFiledDone(_ sender: UITextField) {
         mainlabelChange(title: mainTextField.text!)
-        
     }
-    
     
     @IBAction func searchButtonTappend(_ sender: UIButton) {
         mainlabelChange(title: mainTextField.text!)
@@ -135,6 +161,45 @@ class ViewController: UIViewController {
     @IBAction func subButton3Tappend(_ sender: UIButton) {
         mainlabelChange(title: subTitle3)
     }
+    
+
+    
+    @IBAction func unknownTextFiledDone(_ sender: UITextField) {
+        if unknownTextFiled.text! == "" {
+            mainLabel.text = "알려주세요 ㅠㅠ"
+        }else{
+            neologisms[unownedTitle] = unknownTextFiled.text!
+            mainLabel.text = "알려주셔서 감사합니다!!!!"
+            mainTextField.text = ""
+            unknownTextFiled.text = ""
+            subViewTitleSet()
+            setsubTitle()
+            unknownTextFiled.isHidden = true
+            unknownTextFiledImage.isHidden = true
+
+        }
+    }
+    
+    @IBAction func unknownButtonTappend(_ sender: UIButton) {
+        if unknownTextFiled.text! == "" {
+            mainLabel.text = "알려주세요 ㅠㅠ"
+        }else{
+            neologisms[unownedTitle] = unknownTextFiled.text!
+            mainLabel.text = "알려주셔서 감사합니다!!!!"
+            mainTextField.text = ""
+            unknownTextFiled.text = ""
+            subViewTitleSet()
+            setsubTitle()
+            unknownTextFiled.isHidden = true
+            unknownTextFiledImage.isHidden = true
+            
+        }
+    
+        
+    }
+    
+    
+    
 
 }
 

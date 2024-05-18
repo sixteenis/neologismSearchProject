@@ -23,7 +23,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="mainTextFiledDone:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="ucp-Qt-SUg"/>
+                                    <action selector="mainTextFiledDone:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="Vub-he-L6w"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4U-pB-SVI">
@@ -61,7 +61,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="searchButtonTappend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kSO-jG-k2K"/>
+                                    <action selector="searchButtonTappend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pHS-pS-nGD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1Z-tA-SPK">
@@ -71,6 +71,24 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="subButton3Tappend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mVh-SV-hWD"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dul-c4-f1k">
+                                <rect key="frame" x="16" y="243" width="308" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="unknownTextFiledDone:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="R1v-gg-A8o"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMe-HI-GM1">
+                                <rect key="frame" x="324" y="243" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="unknownButtonTappend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FAd-NR-iPQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -85,6 +103,8 @@
                         <outlet property="subSearchButton1" destination="A4U-pB-SVI" id="WnR-ug-CJF"/>
                         <outlet property="subSearchButton2" destination="FzP-8y-s3g" id="ttV-MK-bOg"/>
                         <outlet property="subSearchButton3" destination="I1Z-tA-SPK" id="47G-eu-H2T"/>
+                        <outlet property="unknownTextFiled" destination="Dul-c4-f1k" id="N01-iQ-6bh"/>
+                        <outlet property="unknownTextFiledImage" destination="wMe-HI-GM1" id="VQu-Nd-XWT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
