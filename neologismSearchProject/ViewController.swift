@@ -13,9 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var mainTextField: UITextField!
     @IBOutlet var mainTextFiledButton: UIButton!
     
-    @IBOutlet var subSearchButton1: UIButton!
-    @IBOutlet var subSearchButton2: UIButton!
-    @IBOutlet var subSearchButton3: UIButton!
+    @IBOutlet var subButtonList: [UIButton]!
     
     @IBOutlet var mainbackgroundImage: UIImageView!
     @IBOutlet var mainLabel: UILabel!
@@ -23,9 +21,10 @@ class ViewController: UIViewController {
     @IBOutlet var unknownTextFiled: UITextField!
     @IBOutlet var unknownTextFiledImage: UIButton!
     
-    var subTitle1: String = ""
-    var subTitle2: String = ""
-    var subTitle3: String = ""
+    
+    
+    var subTitleList = Array(repeating: "", count: 3)
+    
     
     var unownedTitle = ""
     var neologisms: [String:String] = [
@@ -62,9 +61,10 @@ class ViewController: UIViewController {
         mainTextFiledButton.backgroundColor = .black
         mainTextFiledButton.setTitle("", for: .normal)
         
-        setsubView(button: subSearchButton1)
-        setsubView(button: subSearchButton2)
-        setsubView(button: subSearchButton3)
+        for i in 0...2{
+            setsubView(button: subButtonList[i])
+        }
+        
         
         mainbackgroundImage.image = UIImage(named: "background")
         mainbackgroundImage.contentMode = .scaleAspectFill
@@ -100,26 +100,26 @@ class ViewController: UIViewController {
     }
     func subViewTitleSet() {
         var arr = neologisms
+        
         let a = arr.randomElement()?.key
         arr.removeValue(forKey: a!)
         let b = arr.randomElement()?.key
         arr.removeValue(forKey: b!)
         let c = arr.randomElement()?.key
         arr.removeValue(forKey: c!)
-        subTitle1 = a!
-        subTitle2 = b!
-        subTitle3 = c!
+        subTitleList[0] = a!
+        subTitleList[1] = b!
+        subTitleList[2] = c!
         
         
     }
     
     func setsubTitle() {
-        subSearchButton1.setTitle(subTitle1, for: .normal)
-        subSearchButton2.setTitle(subTitle2, for: .normal)
-        subSearchButton3.setTitle(subTitle3, for: .normal)
-        subSearchButton1.contentEdgeInsets =  UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        subSearchButton2.contentEdgeInsets =  UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        subSearchButton3.contentEdgeInsets =  UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        for i in 0...2{
+            subButtonList[i].setTitle(subTitleList[i], for: .normal)
+            subButtonList[i].contentEdgeInsets =  UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            subButtonList[i].tag
+        }
     }
     
     func mainlabelChange(title: String) {
@@ -163,18 +163,18 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func subButton1Tappend(_ sender: UIButton) {
-        mainlabelChange(title: subTitle1)
-    }
-    
-    @IBAction func subButton2Tappend(_ sender: UIButton) {
-        mainlabelChange(title: subTitle2)
-    }
-    
-    @IBAction func subButton3Tappend(_ sender: UIButton) {
-        mainlabelChange(title: subTitle3)
-    }
-    
+//    @IBAction func subButton1Tappend(_ sender: UIButton) {
+//        mainlabelChange(title: subTitle1)
+//    }
+//    
+//    @IBAction func subButton2Tappend(_ sender: UIButton) {
+//        mainlabelChange(title: subTitle2)
+//    }
+//    
+//    @IBAction func subButton3Tappend(_ sender: UIButton) {
+//        mainlabelChange(title: subTitle3)
+//    }
+//    
 
     
     @IBAction func unknownTextFiledDone(_ sender: UITextField) {
@@ -210,8 +210,11 @@ class ViewController: UIViewController {
     
         
     }
+
     
-    
+    @IBAction func subButtonTapped(_ sender: UIButton) {
+        mainlabelChange(title: subTitleList[sender.tag])
+    }
     
 
 }
