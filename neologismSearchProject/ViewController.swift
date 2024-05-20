@@ -96,6 +96,7 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 2
         button.titleLabel?.font = button.titleLabel?.font.withSize(14)
+        
     }
     func subViewTitleSet() {
         var arr = neologisms
@@ -116,6 +117,9 @@ class ViewController: UIViewController {
         subSearchButton1.setTitle(subTitle1, for: .normal)
         subSearchButton2.setTitle(subTitle2, for: .normal)
         subSearchButton3.setTitle(subTitle3, for: .normal)
+        subSearchButton1.contentEdgeInsets =  UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        subSearchButton2.contentEdgeInsets =  UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        subSearchButton3.contentEdgeInsets =  UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     
     func mainlabelChange(title: String) {
@@ -142,12 +146,21 @@ class ViewController: UIViewController {
     
     
     @IBAction func mainTextFiledDone(_ sender: UITextField) {
-        mainlabelChange(title: mainTextField.text!)
+        if mainTextField.text! == ""{
+            mainLabel.text = "아시는 신조어가 없으면 위에 신조어에 의미를 보세요!"
+            
+        }else{
+            mainlabelChange(title: mainTextField.text!)
+        }
     }
     
     @IBAction func searchButtonTappend(_ sender: UIButton) {
-        mainlabelChange(title: mainTextField.text!)
-        
+        if mainTextField.text! == ""{
+            mainLabel.text = "아시는 신조어가 없으면 위에 신조어에 의미를 보세요!"
+            
+        }else{
+            mainlabelChange(title: mainTextField.text!)
+        }
     }
     
     @IBAction func subButton1Tappend(_ sender: UIButton) {
