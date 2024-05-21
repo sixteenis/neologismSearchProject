@@ -90,7 +90,11 @@ class ViewController: UIViewController {
         unknownTextFiled.isHidden = true
         unknownTextFiledImage.isHidden = true
     }
-    
+    func rechangeSubTitle() {
+        subViewTitleSet()
+        
+        
+    }
     func setsubView(button: UIButton) {
         button.tintColor = .black
         button.layer.cornerRadius = 10
@@ -100,7 +104,7 @@ class ViewController: UIViewController {
     }
     func subViewTitleSet() {
         var arr = neologisms
-        
+        print(arr)
         let a = arr.randomElement()?.key
         arr.removeValue(forKey: a!)
         let b = arr.randomElement()?.key
@@ -110,6 +114,9 @@ class ViewController: UIViewController {
         subTitleList[0] = a!
         subTitleList[1] = b!
         subTitleList[2] = c!
+        for i in 0...2{
+            subButtonList[i].setTitle(subTitleList[i], for: .normal)
+        }
         
         
     }
@@ -118,7 +125,7 @@ class ViewController: UIViewController {
         for i in 0...2{
             subButtonList[i].setTitle(subTitleList[i], for: .normal)
             subButtonList[i].contentEdgeInsets =  UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            subButtonList[i].tag
+            subButtonList[i].tag = i
         }
     }
     
@@ -135,8 +142,9 @@ class ViewController: UIViewController {
             mainTextField.text = ""
             unknownTextFiled.isHidden = true
             unknownTextFiledImage.isHidden = true
-            subViewTitleSet()
-            setsubTitle()
+            rechangeSubTitle()
+//            subViewTitleSet()
+//            setsubTitle()
         }
         //랜덤으로 단어 선택하고 서브뷰에 나타내줌
         
@@ -185,8 +193,9 @@ class ViewController: UIViewController {
             mainLabel.text = "알려주셔서 감사합니다!!!!"
             mainTextField.text = ""
             unknownTextFiled.text = ""
-            subViewTitleSet()
-            setsubTitle()
+            rechangeSubTitle()
+//            subViewTitleSet()
+//            setsubTitle()
             unknownTextFiled.isHidden = true
             unknownTextFiledImage.isHidden = true
 
@@ -201,8 +210,9 @@ class ViewController: UIViewController {
             mainLabel.text = "알려주셔서 감사합니다!!!!"
             mainTextField.text = ""
             unknownTextFiled.text = ""
-            subViewTitleSet()
-            setsubTitle()
+            rechangeSubTitle()
+//            subViewTitleSet()
+//            setsubTitle()
             unknownTextFiled.isHidden = true
             unknownTextFiledImage.isHidden = true
             
@@ -213,6 +223,7 @@ class ViewController: UIViewController {
 
     
     @IBAction func subButtonTapped(_ sender: UIButton) {
+        print(sender.tag)
         mainlabelChange(title: subTitleList[sender.tag])
     }
     
